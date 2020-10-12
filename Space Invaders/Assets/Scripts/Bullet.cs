@@ -99,6 +99,12 @@ public class Bullet : MonoBehaviour
             
 
         }
+
+        if(collision.gameObject.name == "Bullet_Enemy(Clone)")
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
          
         
     }
