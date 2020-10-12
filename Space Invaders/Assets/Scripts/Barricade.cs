@@ -30,5 +30,15 @@ public class Barricade : MonoBehaviour
             Vector3 shrinker = new Vector3(-0.1f, -0.1f, -0.1f);
             gameObject.transform.localScale += shrinker;
         }
+
+        if (collision.gameObject.name == "Bullet_Enemy(Clone)")
+        {
+            //Debug.Log("Hit Barricade");
+            Destroy(collision.gameObject);
+
+            //Shrinks when hit bullet
+            Vector3 shrinker = new Vector3(-0.1f, -0.1f, -0.1f);
+            gameObject.transform.localScale += shrinker;
+        }
     }
 }

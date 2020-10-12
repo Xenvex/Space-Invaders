@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    //public GameObject bullet;
-    //public Transform shottingOffset;
+    public GameObject bullet;
+    public Transform shottingOffset;
     public float speed = 1;
     private int timer = 0;
 
@@ -16,8 +16,8 @@ public class Enemy : MonoBehaviour
         rigidEnemy = GetComponent<Rigidbody2D>();
         //rigidEnemy.AddForce(new Vector3(0.0f, -0.5f, 0.0f));
         rigidEnemy.velocity = new Vector3(0f, -0.1f * speed, 0f);
-        //GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
-        //shot.velocity = shot.velocity.normalized * -1;
+    
+        
     }
 
     void Update()
@@ -38,13 +38,17 @@ public class Enemy : MonoBehaviour
         if(timer == 320)
         {
             //Slight Left
-            rigidEnemy.velocity = new Vector3(-0.1f * speed, -0.1f * speed, 0f);
+            rigidEnemy.velocity = new Vector3(-0.15f * speed, -0.1f * speed, 0f);
+            GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
+            Destroy(shot, 3f);
         }
         
         if(timer == 640)
         {
             //Slight Right
-            rigidEnemy.velocity = new Vector3(0.1f * speed, -0.1f * speed, 0f);
+            rigidEnemy.velocity = new Vector3(0.15f * speed, -0.1f * speed, 0f);
+            GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
+            Destroy(shot, 3f);
         }
 
         
