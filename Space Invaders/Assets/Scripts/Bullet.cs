@@ -19,6 +19,87 @@ public class Bullet : MonoBehaviour
     private void Fire()
     {
       myRigidbody2D.velocity = Vector2.up * speed; 
-      Debug.Log("Wwweeeeee");
+      //Debug.Log("Wwweeeeee");
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            if (collision.gameObject.name == "Enemy")
+            {
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+
+                //Increment Enemy Speed
+                for(int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
+                {
+                    GameObject findEnemy = GameObject.FindGameObjectsWithTag("Enemy")[i];
+                    Enemy enemyScript = findEnemy.GetComponent<Enemy>();
+                    enemyScript.speed += 1;
+                }
+
+                //Increment Score Accordingly
+                GameObject findScore = GameObject.Find("Canvas");
+                ScoreManager scoreScript = findScore.GetComponent<ScoreManager>();
+                scoreScript.score += 1;
+            }
+            if (collision.gameObject.name == "Enemy_Tier2")
+            {
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+
+                //Increment Enemy Speed
+                for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
+                {
+                    GameObject findEnemy = GameObject.FindGameObjectsWithTag("Enemy")[i];
+                    Enemy enemyScript = findEnemy.GetComponent<Enemy>();
+                    enemyScript.speed += 1;
+                }
+
+                //Increment Score Accordingly
+                GameObject findScore = GameObject.Find("Canvas");
+                ScoreManager scoreScript = findScore.GetComponent<ScoreManager>();
+                scoreScript.score += 2;
+            }
+            if (collision.gameObject.name == "Enemy_Tier3")
+            {
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+
+                //Increment Enemy Speed
+                for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
+                {
+                    GameObject findEnemy = GameObject.FindGameObjectsWithTag("Enemy")[i];
+                    Enemy enemyScript = findEnemy.GetComponent<Enemy>();
+                    enemyScript.speed += 1;
+                }
+
+                //Increment Score Accordingly
+                GameObject findScore = GameObject.Find("Canvas");
+                ScoreManager scoreScript = findScore.GetComponent<ScoreManager>();
+                scoreScript.score += 3;
+            }
+            if (collision.gameObject.name == "Enemy_Tier4")
+            {
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+
+                //Increment Enemy Speed
+                GameObject findEnemy = GameObject.FindGameObjectsWithTag("Enemy")[0];
+                Enemy enemyScript = findEnemy.GetComponent<Enemy>();
+                enemyScript.speed += 1;
+
+                //Increment Score Accordingly
+                GameObject findScore = GameObject.Find("Canvas");
+                ScoreManager scoreScript = findScore.GetComponent<ScoreManager>();
+                scoreScript.score += 4;
+            }
+
+            
+
+        }
+         
+        
     }
 }
