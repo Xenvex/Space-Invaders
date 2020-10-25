@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))] //technique for making sure there isn't a null reference during runtime if you are going to use get component
 public class BulletEnemy : MonoBehaviour
@@ -28,10 +29,18 @@ public class BulletEnemy : MonoBehaviour
         {
 
             Destroy(collision.gameObject);
+            //StartCoroutine(LoadCredits()); //Using it cause LoadCredits is an IEnumerator
+            SceneManager.LoadScene("CreditsScene");
 
 
         }
 
 
+    }
+
+    IEnumerator LoadCredits()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("CreditsScene");
     }
 }

@@ -39,6 +39,11 @@ public class Enemy : MonoBehaviour
         {
             //Slight Left
             rigidEnemy.velocity = new Vector3(-0.15f * speed, -0.1f * speed, 0f);
+
+            //Change to shooting animation
+            gameObject.GetComponent<Animator>().SetTrigger("Shoot");
+
+            //Fire Bullet
             GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
             Destroy(shot, 3f);
         }
@@ -47,6 +52,11 @@ public class Enemy : MonoBehaviour
         {
             //Slight Right
             rigidEnemy.velocity = new Vector3(0.15f * speed, -0.1f * speed, 0f);
+
+            //Change to shooting animation
+            gameObject.GetComponent<Animator>().SetTrigger("Shoot");
+
+            //FireBullet
             GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
             Destroy(shot, 3f);
         }

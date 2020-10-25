@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
         Vector2 move = new Vector2(10, 0);
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            //Change to shooting animation
+            gameObject.GetComponent<Animator>().SetTrigger("Shoot");
+
             GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
             //Debug.Log("Bang!");
 

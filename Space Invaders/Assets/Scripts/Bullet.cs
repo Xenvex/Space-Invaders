@@ -6,6 +6,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
   private Rigidbody2D myRigidbody2D;
+    private int CountDown1 = 0;
+    private bool CountEnd1 = false;
+    private bool CountOmega = false;
 
   public float speed = 5;
     // Start is called before the first frame update
@@ -22,17 +25,39 @@ public class Bullet : MonoBehaviour
       //Debug.Log("Wwweeeeee");
     }
 
+    void Update()
+    {
+        if(CountEnd1 = true && CountDown1 < 960)
+        {
+            CountDown1 += 1;
+            Debug.Log(CountDown1);
+        }
+
+        if(CountDown1 == 960)
+        {
+            CountOmega = true;
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Enemy")
         {
             if (collision.gameObject.name == "Enemy")
             {
+                CountEnd1 = true;
                 Destroy(gameObject);
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
+                collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                //StartCoroutine(DestroyEnemy(collision));
+                if (CountOmega)
+                {
+                    Destroy(collision.gameObject);
+                    //DestroyEnemy(collision);
+                }
 
                 //Increment Enemy Speed
-                for(int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
+                for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
                 {
                     GameObject findEnemy = GameObject.FindGameObjectsWithTag("Enemy")[i];
                     Enemy enemyScript = findEnemy.GetComponent<Enemy>();
@@ -47,7 +72,9 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.name == "Enemy_Tier2")
             {
                 Destroy(gameObject);
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
+                collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                //StartCoroutine(DestroyEnemy(collision));
 
                 //Increment Enemy Speed
                 for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
@@ -65,7 +92,9 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.name == "Enemy_Tier3")
             {
                 Destroy(gameObject);
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
+                collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                //StartCoroutine(DestroyEnemy(collision));
 
                 //Increment Enemy Speed
                 for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
@@ -83,12 +112,17 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.name == "Enemy_Tier4")
             {
                 Destroy(gameObject);
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
+                collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                //StartCoroutine(DestroyEnemy(collision));
 
                 //Increment Enemy Speed
-                GameObject findEnemy = GameObject.FindGameObjectsWithTag("Enemy")[0];
-                Enemy enemyScript = findEnemy.GetComponent<Enemy>();
-                enemyScript.speed += 1;
+                for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
+                {
+                    GameObject findEnemy = GameObject.FindGameObjectsWithTag("Enemy")[i];
+                    Enemy enemyScript = findEnemy.GetComponent<Enemy>();
+                    enemyScript.speed += 1;
+                }
 
                 //Increment Score Accordingly
                 GameObject findScore = GameObject.Find("Canvas");
@@ -105,7 +139,17 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }
+
+
          
         
+    }
+
+    void DestroyEnemy(Collision2D other)
+    {
+        Debug.Log("YoYo");
+        //yield return new WaitForSeconds(1);
+        Destroy(other.gameObject);
+        Debug.Log("Pizza Time");
     }
 }
