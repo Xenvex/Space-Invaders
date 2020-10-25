@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-  public GameObject bullet;
+    public GameObject bullet;
 
-  private Rigidbody2D rigid;
+    private Rigidbody2D rigid;
 
-  public Transform shottingOffset;
+    public Transform shottingOffset;
+
+    //AudioSource
+    private AudioSource audioSource;
+    public AudioClip Shootey;
 
     public float hp = 10;
     private float moveSpeed = 8;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rigid = GetComponent<Rigidbody2D>();
         
     }
@@ -25,18 +30,15 @@ public class Player : MonoBehaviour
         Vector2 move = new Vector2(10, 0);
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            //Shooting Sound
+            audioSource.PlayOneShot(Shootey);
+
             //Change to shooting animation
             gameObject.GetComponent<Animator>().SetTrigger("Shoot");
 
             GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
-            //Debug.Log("Bang!");
 
             Destroy(shot, 3f);
-
-            //GameObject findScore = GameObject.Find("Canvas");
-            //ScoreManager scoreScript = findScore.GetComponent<ScoreManager>();
-            //scoreScript.score += 1;
-
         }
 
 

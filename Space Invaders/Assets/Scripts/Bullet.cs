@@ -27,15 +27,15 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        if(CountEnd1 = true && CountDown1 < 960)
+        if(CountEnd1 = true && CountDown1 < 240)
         {
-            CountDown1 += 1;
-            Debug.Log(CountDown1);
+            CountDown1++;
+            //Debug.Log(CountDown1);
         }
-
-        if(CountDown1 == 960)
+        else if(CountDown1 == 240)
         {
             CountOmega = true;
+            Debug.Log(CountDown1);
         }
     }
 
@@ -47,14 +47,17 @@ public class Bullet : MonoBehaviour
             {
                 CountEnd1 = true;
                 Destroy(gameObject);
-                //Destroy(collision.gameObject);
-                collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                Destroy(collision.gameObject);
+                
+                /*
                 //StartCoroutine(DestroyEnemy(collision));
                 if (CountOmega)
                 {
-                    Destroy(collision.gameObject);
-                    //DestroyEnemy(collision);
+                    collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                    //Destroy(collision.gameObject);
+                    DestroyEnemy(collision);
                 }
+                */
 
                 //Increment Enemy Speed
                 for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
@@ -72,8 +75,8 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.name == "Enemy_Tier2")
             {
                 Destroy(gameObject);
-                //Destroy(collision.gameObject);
-                collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                Destroy(collision.gameObject);
+                //collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
                 //StartCoroutine(DestroyEnemy(collision));
 
                 //Increment Enemy Speed
@@ -92,8 +95,8 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.name == "Enemy_Tier3")
             {
                 Destroy(gameObject);
-                //Destroy(collision.gameObject);
-                collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                Destroy(collision.gameObject);
+                //collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
                 //StartCoroutine(DestroyEnemy(collision));
 
                 //Increment Enemy Speed
@@ -112,8 +115,8 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.name == "Enemy_Tier4")
             {
                 Destroy(gameObject);
-                //Destroy(collision.gameObject);
-                collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                Destroy(collision.gameObject);
+                //collision.gameObject.GetComponent<Animator>().SetTrigger("Death");
                 //StartCoroutine(DestroyEnemy(collision));
 
                 //Increment Enemy Speed

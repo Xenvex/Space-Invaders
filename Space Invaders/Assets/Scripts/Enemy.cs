@@ -11,13 +11,16 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rigidEnemy;
 
+    //AudioSource
+    private AudioSource audioSource;
+    public AudioClip Shootey;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rigidEnemy = GetComponent<Rigidbody2D>();
         //rigidEnemy.AddForce(new Vector3(0.0f, -0.5f, 0.0f));
         rigidEnemy.velocity = new Vector3(0f, -0.1f * speed, 0f);
-    
-        
     }
 
     void Update()
@@ -40,6 +43,9 @@ public class Enemy : MonoBehaviour
             //Slight Left
             rigidEnemy.velocity = new Vector3(-0.15f * speed, -0.1f * speed, 0f);
 
+            //Shooting Sound
+            audioSource.PlayOneShot(Shootey);
+
             //Change to shooting animation
             gameObject.GetComponent<Animator>().SetTrigger("Shoot");
 
@@ -52,6 +58,9 @@ public class Enemy : MonoBehaviour
         {
             //Slight Right
             rigidEnemy.velocity = new Vector3(0.15f * speed, -0.1f * speed, 0f);
+
+            //Shooting Sound
+            audioSource.PlayOneShot(Shootey);
 
             //Change to shooting animation
             gameObject.GetComponent<Animator>().SetTrigger("Shoot");
